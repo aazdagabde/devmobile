@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingVertical="6dp"
+    android:divider="?android:attr/dividerHorizontal"
+    android:showDividers="middle">
+
+    <!-- Nom vaccin -->
+    <TextView
+        android:id="@+id/colName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:textStyle="bold"/>
+
+    <!-- Date -->
+    <TextView
+        android:id="@+id/colDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <!-- État -->
+    <TextView
+        android:id="@+id/colState"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAlignment="center"/>
+
+    <!-- Case à cocher -->
+    <CheckBox
+        android:id="@+id/ckDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">VaxMind</string>
+    <!-- Login -->
+    <string name="login_title">Connexion</string>
+    <string name="login_hint_email">Email</string>
+    <string name="login_hint_password">Mot de passe</string>
+    <string name="login_btn">Se connecter</string>
+    <string name="login_create_account">Créer un compte</string>
+    <!-- En-tête -->
+    <string name="register_title">Inscription</string>
+
+    <!-- Hints -->
+    <string name="register_hint_first_name">Prénom</string>
+    <string name="register_hint_last_name">Nom</string>
+    <string name="register_hint_email">Email</string>
+    <string name="register_hint_password">Mot de passe</string>
+    <string name="register_hint_birth">Date de naissance (yyyy-MM-dd)</string>
+    <string name="register_hint_city">Ville</string>
+    <string name="register_hint_parent1">Nom complet parent 1</string>
+    <string name="register_hint_parent2">Nom complet parent 2</string>
+    <string name="register_hint_parent_phone">Téléphone des parents</string>
+    <string name="register_hint_parent_cin">CIN des parents</string>
+    <string name="register_hint_user_cin">CIN utilisateur (optionnel)</string>
+
+    <!-- Boutons / liens -->
+    <string name="register_btn">S’inscrire</string>
+    <string name="register_to_login">Déjà un compte ? Se connecter</string>
+
+    <string name="placeholder_msg">Écran en cours d’implémentation</string>
+
+    <string name="user_info_template">
+Nom : %1$s %2$s\nEmail : %3$s\nNaissance : %4$s\nVille : %5$s\nParent 1 : %6$s\nParent 2 : %7$s\nTéléphone parents : %8$s\nCIN parents : %9$s\nCIN utilisateur : %10$s
+</string>
+
+    <string name="chat_hint">Posez votre question santé…</string>
+    <string name="chat_send">Envoyer</string>
+    <string name="main_hi_placeholder">Bonjour</string>
+    <string name="main_btn_user_info">Informations utilisateur</string>
+    <string name="main_btn_vaccines">Vaccination</string>
+    <string name="main_btn_settings">Paramètres</string>
+    <string name="main_btn_chat">Assistant Santé</string>
+
+    <string name="main_hi">Bonjour %1$s %2$s</string>
+
+    <string name="vaccine_state_done">Fait</string>
+    <string name="vaccine_state_todo">Non fait</string>
+
+    <string name="vaccine_age">Âges</string>
+    <string name="vaccine_vaccin">Vaccinations</string>
+
+
+    <string name="vaccine_title">Le calendrier de vaccination</string>
+   <string name="vaccine_date">Date</string>
+    <string name="vaccine_state">État</string>
+    <string name="vaccine_note">Remarques</string>
+
+</resources>

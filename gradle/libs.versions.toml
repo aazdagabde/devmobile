@@ -1,0 +1,66 @@
+############################
+#         Versions         #
+############################
+[versions]
+# Android Gradle Plugin
+agp            = "8.9.0"
+
+# Tests
+junit          = "4.13.2"
+junitExt       = "1.2.1"
+espressoCore   = "3.6.1"
+
+# UI / AndroidX de base
+appcompat      = "1.7.1"
+material       = "1.12.0"
+activity       = "1.10.1"
+constraintlayout = "2.2.1"
+
+# Nouvelles libs
+room           = "2.6.1"
+work           = "2.9.0"
+retrofit       = "2.11.0"
+okhttp         = "5.0.0-alpha.11"
+annotationx    = "1.7.1"
+bcrypt         = "0.4"
+
+############################
+#        Libraries         #
+############################
+[libraries]
+# --- Tests ---
+junit              = { group = "junit",                   name = "junit",              version.ref = "junit" }
+ext-junit          = { group = "androidx.test.ext",       name = "junit",              version.ref = "junitExt" }
+espresso-core      = { group = "androidx.test.espresso",  name = "espresso-core",      version.ref = "espressoCore" }
+
+# --- UI / AndroidX ---
+appcompat          = { group = "androidx.appcompat",      name = "appcompat",          version.ref = "appcompat" }
+material           = { group = "com.google.android.material", name = "material",       version.ref = "material" }
+activity           = { group = "androidx.activity",       name = "activity",           version.ref = "activity" }
+constraintlayout   = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+
+# --- Room (SQLite ORM) ---
+room-runtime       = { group = "androidx.room",           name = "room-runtime",       version.ref = "room" }
+room-compiler      = { group = "androidx.room",           name = "room-compiler",      version.ref = "room" }
+
+# --- Annotations AndroidX (@NonNull, etc.) ---
+androidx-annotation = { group = "androidx.annotation",    name = "annotation",         version.ref = "annotationx" }
+
+# --- WorkManager ---
+work-runtime       = { group = "androidx.work",           name = "work-runtime",       version.ref = "work" }
+
+# --- Réseau / Retrofit + Gson ---
+retrofit           = { group = "com.squareup.retrofit2",  name = "retrofit",           version.ref = "retrofit" }
+retrofit-gson      = { group = "com.squareup.retrofit2",  name = "converter-gson",     version.ref = "retrofit" }
+
+# --- OkHttp (intercepteur de logs HTTP) ---
+okhttp-logging     = { group = "com.squareup.okhttp3",    name = "logging-interceptor", version.ref = "okhttp" }
+
+# --- BCrypt (hashage mot de passe) ---
+bcrypt             = { group = "org.mindrot",             name = "jbcrypt",            version.ref = "bcrypt" }
+
+############################
+#         Plugins          #
+############################
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
