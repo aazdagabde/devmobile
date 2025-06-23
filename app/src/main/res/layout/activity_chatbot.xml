@@ -1,43 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/vxm_blue_50"
+    android:padding="12dp">
 
-    <!-- Zone de discussion -->
-    <ScrollView
-        android:id="@+id/scrollChat"
-        android:layout_width="match_parent"
+    <!-- RecyclerView conversation -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChat"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:overScrollMode="never">
+        android:contentDescription="@null"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/inputBar"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"/>
 
-        <TextView
-            android:id="@+id/tvChat"
+    <!-- Barre d’envoi -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/inputBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="24dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textIsSelectable="true"
-            android:typeface="monospace" />
-    </ScrollView>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="4dp"
+            android:paddingVertical="4dp">
 
-    <!-- Champ de saisie -->
-    <EditText
-        android:id="@+id/edPrompt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/chat_hint"
-        android:inputType="textCapSentences"
-        android:minHeight="48dp"
-        android:layout_marginTop="8dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Votre message">
 
-    <!-- Bouton envoyer -->
-    <Button
-        android:id="@+id/btnSend"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/chat_send"
-        android:layout_marginTop="8dp"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPrompt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:textColor="@color/vxm_blue_700"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSend"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:icon="@drawable/ic_send"
+                android:contentDescription="@string/envoyer"
+                app:iconTint="@color/vxm_white"
+                app:backgroundTint="@color/vxm_blue_500"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- Loader -->
     <ProgressBar
@@ -46,6 +73,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dp"/>
-</LinearLayout>
+        app:layout_constraintBottom_toTopOf="@id/inputBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="8dp"/>
+
+    <!-- Placeholders pour compatibilité Java -->
+    <ScrollView
+        android:id="@+id/scrollChat"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvChat"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

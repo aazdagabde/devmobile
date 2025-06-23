@@ -1,17 +1,22 @@
 package ma.itirc.vaxmind.ui.chat;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import ma.itirc.vaxmind.BuildConfig;
 import ma.itirc.vaxmind.R;
 import ma.itirc.vaxmind.network.GeminiClient;
 import ma.itirc.vaxmind.network.GeminiService;
@@ -19,66 +24,84 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Chatbot « VaxMind » – spécialité Santé / Vaccins
+ * (retry réseau déjà géré par RetryInterceptor).
+ */
 public class ChatbotActivity extends AppCompatActivity {
 
-    /* ------------------  AJOUT ICI : clé en clair  ------------------ */
-    private static final String GEMINI_API_KEY = "AIzaSyBvCjYm9F7xpQsRXvtOGLF6jKGNTu2cttg";
-    /* ---------------------------------------------------------------- */
+    private static final String SYSTEM_PROMPT =
+            "Tu es VaxMind, un assistant spécialisé dans la santé et les vaccins. " +
+                    "Réponds aux questions santé/vaccins en français. " +
+                    "Si la question est hors de ce domaine, réponds seulement : " +
+                    "\"Je m'excuse, ma spécialité est la santé et les vaccins.\"";
 
-    private EditText   input;
-    private TextView   chat;
-    private ScrollView scroll;
+    private EditText   edPrompt;
     private ProgressBar progress;
+    private ChatAdapter adapter;
+    private final List<ChatMessage> messages = new ArrayList<>();
 
-    @Override protected void onCreate(@Nullable Bundle saved) {
+    @Override protected void onCreate(Bundle saved) {
         super.onCreate(saved);
         setContentView(R.layout.activity_chatbot);
 
-        input    = findViewById(R.id.edPrompt);
-        chat     = findViewById(R.id.tvChat);
-        scroll   = findViewById(R.id.scrollChat);
-        progress = findViewById(R.id.progressBar);
-        Button btnSend = findViewById(R.id.btnSend);
+        edPrompt  = findViewById(R.id.edPrompt);
+        progress  = findViewById(R.id.progressBar);
 
-        btnSend.setOnClickListener(v -> askGemini());
+        RecyclerView rv = findViewById(R.id.rvChat);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ChatAdapter();
+        rv.setAdapter(adapter);
+
+        findViewById(R.id.btnSend).setOnClickListener(v -> sendPrompt());
     }
 
-    private void askGemini() {
-        String prompt = input.getText().toString().trim();
+    private void sendPrompt() {
+        String prompt = edPrompt.getText().toString().trim();
         if (prompt.isEmpty()) return;
 
-        progress.setVisibility(View.VISIBLE);
-        GeminiService.GeminiRequest body = new GeminiService.GeminiRequest(prompt);
+        edPrompt.setText("");
+        append(new ChatMessage(prompt, true));
 
-        GeminiClient.get()
-                .generateContent(GEMINI_API_KEY, body)         // <-- utilisation directe
+        progress.setVisibility(View.VISIBLE);
+
+        String fullPrompt = SYSTEM_PROMPT + "\n\nQuestion : " + prompt;
+        GeminiService.GeminiRequest body = new GeminiService.GeminiRequest(fullPrompt);
+
+        GeminiClient.api()
+                .generateContent(BuildConfig.GEMINI_API_KEY, body)
                 .enqueue(new Callback<>() {
-                    @Override public void onResponse(
-                            Call<GeminiService.GeminiResponse> c,
-                            Response<GeminiService.GeminiResponse> r) {
+                    @Override
+                    public void onResponse(
+                            @NonNull Call<GeminiService.GeminiResponse> c,
+                            @NonNull Response<GeminiService.GeminiResponse> r) {
 
                         progress.setVisibility(View.GONE);
+
                         if (r.isSuccessful() && r.body() != null) {
-                            append("Vous : " + prompt);
-                            append("SantéBot : " + r.body().firstAnswer());
-                            input.setText("");
+                            append(new ChatMessage(r.body().firstAnswer(), false));
                         } else {
-                            Toast.makeText(ChatbotActivity.this,
-                                    "Réponse API invalide", Toast.LENGTH_SHORT).show();
+                            String details = "";
+                            try { if (r.errorBody()!=null) details = r.errorBody().string(); }
+                            catch (IOException ignored) {}
+                            append(new ChatMessage("Erreur API : " + r.code() + "\n" + details, false));
                         }
                     }
-                    @Override public void onFailure(
-                            Call<GeminiService.GeminiResponse> c, Throwable t) {
+
+                    @Override
+                    public void onFailure(
+                            @NonNull Call<GeminiService.GeminiResponse> c,
+                            @NonNull Throwable t) {
+
                         progress.setVisibility(View.GONE);
-                        Toast.makeText(ChatbotActivity.this,
-                                t.getMessage(), Toast.LENGTH_SHORT).show();
+                        append(new ChatMessage("Erreur réseau : " + t.getMessage(), false));
                     }
                 });
     }
 
-    private void append(String line) {
-        chat.append(line);
-        chat.append("\n\n");                 // ou  chat.append(line + "\n\n");
-        scroll.post(() -> scroll.fullScroll(View.FOCUS_DOWN));
+    /* ---------- utils ---------- */
+    private void append(ChatMessage m) {
+        messages.add(m);
+        adapter.submitList(new ArrayList<>(messages));
     }
 }

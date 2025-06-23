@@ -39,6 +39,7 @@ Nom : %1$s %2$s\nEmail : %3$s\nNaissance : %4$s\nVille : %5$s\nParent 1�
     <string name="main_btn_vaccines">Vaccination</string>
     <string name="main_btn_settings">Paramètres</string>
     <string name="main_btn_chat">Assistant Santé</string>
+    <string name="user_info_settings">Paramètres</string>
 
     <string name="main_hi">Bonjour %1$s %2$s</string>
 
@@ -53,5 +54,6 @@ Nom : %1$s %2$s\nEmail : %3$s\nNaissance : %4$s\nVille : %5$s\nParent 1�
    <string name="vaccine_date">Date</string>
     <string name="vaccine_state">État</string>
     <string name="vaccine_note">Remarques</string>
+    <string name="envoyer">Envoyer</string>
 
 </resources>

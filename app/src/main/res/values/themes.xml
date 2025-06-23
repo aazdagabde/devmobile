@@ -1,9 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.VaxMind" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+    <!-- Thème principal clair -->
+    <style name="Theme.VaxMind" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Couleurs logo -->
+        <item name="colorPrimary">@color/vxm_blue_500</item>
+        <item name="colorOnPrimary">@color/vxm_white</item>
+
+        <item name="colorSecondary">@color/vxm_blue_200</item>
+        <item name="colorOnSecondary">@color/vxm_white</item>
+
+        <!-- Surface / texte -->
+        <item name="colorSurface">@color/vxm_white</item>
+        <item name="colorOnSurface">@color/vxm_blue_700</item>
+
+        <!-- Icônes de barre de statut sombres sur fond clair -->
+        <item name="android:windowLightStatusBar">true</item>
+
+        <!-- Arrondis cohérents Material -->
+        <item name="shapeAppearanceSmallComponent">@style/RoundedCorners</item>
+        <item name="shapeAppearanceMediumComponent">@style/RoundedCorners</item>
     </style>
 
-    <style name="Theme.VaxMind" parent="Base.Theme.VaxMind" />
+    <!-- Style de coins arrondis -->
+    <style name="RoundedCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
 </resources>

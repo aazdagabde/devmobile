@@ -1,7 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.VaxMind" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+    <!-- Thème principal sombre -->
+    <style name="Theme.VaxMind" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Légèrement plus claires pour contraste -->
+        <item name="colorPrimary">@color/vxm_blue_200</item>
+        <item name="colorOnPrimary">@color/vxm_white</item>
+
+        <item name="colorSecondary">@color/vxm_blue_500</item>
+        <item name="colorOnSecondary">@color/vxm_white</item>
+
+        <!-- Fond sombre / texte clair -->
+        <item name="colorSurface">@color/black</item>
+        <item name="colorOnSurface">@color/vxm_white</item>
+
+        <!-- Icônes de statut claires sur fond sombre -->
+        <item name="android:windowLightStatusBar">false</item>
+
+        <!-- Même arrondis -->
+        <item name="shapeAppearanceSmallComponent">@style/RoundedCorners</item>
+        <item name="shapeAppearanceMediumComponent">@style/RoundedCorners</item>
     </style>
+
+    <style name="RoundedCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
 </resources>

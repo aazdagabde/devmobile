@@ -10,50 +10,43 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
- * Interface Retrofit ↔ API Google Generative Language (Gemini).
- * Appelle le modèle gemini-2.0-flash en v1beta.
+ * Interface Retrofit → Google Generative Language API (Gemini).
+ * Route :  v1beta/models/gemini-2.0-flash:generateContent
  */
 public interface GeminiService {
 
     @Headers("Content-Type: application/json")
     @POST("v1beta/models/gemini-2.0-flash:generateContent")
     Call<GeminiResponse> generateContent(
-            @Query("key") String apiKey,      // ?key=YOUR_API_KEY
-            @Body  GeminiRequest body);       // JSON { "contents":[…] }
+            @Query("key") String apiKey,
+            @Body GeminiRequest body);
 
-    /* ----------  Modèles de requête / réponse ---------- */
+    /* ----------  DTO ---------- */
 
-    /** Corps minimal accepté par l’API (prompt texte simple) */
+    /** Corps minimal « prompt texte » */
     class GeminiRequest {
         public List<Map<String, Object>> contents;
 
         public GeminiRequest(String prompt) {
-            // Construit la structure JSON attendue par l’API
+            //  {"contents":[{"parts":[{"text":"..."}]}]}
             contents = List.of(
                     Map.of("parts", List.of(Map.of("text", prompt)))
             );
         }
     }
 
-    /** Parsing très simplifié de la réponse */
+    /** Parsing très simplifié de la réponse Gemini */
     class GeminiResponse {
         public List<Candidate> candidates;
 
-        public static class Candidate {
-            public Content content;
-        }
-        public static class Content {
-            public List<Part> parts;
-        }
-        public static class Part {
-            public String text;
+        public String firstAnswer() {
+            if (candidates == null || candidates.isEmpty()) return "";
+            return candidates.get(0).content.parts.get(0).text;
         }
 
-        /** Retourne la première réponse textuelle ou chaîne vide */
-        public String firstAnswer() {
-            return (candidates != null && !candidates.isEmpty())
-                    ? candidates.get(0).content.parts.get(0).text
-                    : "";
-        }
+        /* -- sous-structures            */
+        public static class Candidate { public Content content; }
+        public static class Content   { public List<Part> parts; }
+        public static class Part      { public String text; }
     }
 }

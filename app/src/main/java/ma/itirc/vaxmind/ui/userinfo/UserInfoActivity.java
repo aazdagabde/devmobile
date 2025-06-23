@@ -1,5 +1,6 @@
 package ma.itirc.vaxmind.ui.userinfo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import java.util.concurrent.Executors;
 import ma.itirc.vaxmind.R;
 import ma.itirc.vaxmind.data.database.AppDatabase;
 import ma.itirc.vaxmind.data.entity.User;
+import ma.itirc.vaxmind.ui.settings.SettingsActivity;
 
 public class UserInfoActivity extends AppCompatActivity {
 
@@ -22,7 +24,9 @@ public class UserInfoActivity extends AppCompatActivity {
 
         long userId = getIntent().getLongExtra("userId", -1);
         TextView tv = findViewById(R.id.tvUserInfo);
-
+        findViewById(R.id.btnToSettings).setOnClickListener(v ->
+                startActivity(new Intent(this, SettingsActivity.class)
+                        .putExtra("userId", getIntent().getLongExtra("userId", -1))));
         io.execute(() -> {
             User u = AppDatabase.get(this).userDao().findById(userId);
             runOnUiThread(() -> {

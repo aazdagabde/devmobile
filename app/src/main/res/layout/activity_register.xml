@@ -1,199 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/screen_padding"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:padding="24dp"
+    android:background="@color/vxm_blue_50">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register_title"
+            android:text="Inscription"
             android:textAppearance="?attr/textAppearanceHeadlineSmall"
-            android:paddingBottom="@dimen/field_margin"/>
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="12dp"/>
 
+        <!-- Nom complet -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/register_hint_first_name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etFirstName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="textPersonName"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/register_hint_last_name"
-            android:layout_marginTop="@dimen/field_margin">
+            android:hint="Nom complet">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etLastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="textPersonName"/>
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Prénom -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/register_hint_email"
-            android:layout_marginTop="@dimen/field_margin">
+            android:hint="Prénom"
+            android:layout_marginTop="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Email -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Mot de passe -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/register_hint_password"
-            android:layout_marginTop="@dimen/field_margin">
+            android:hint="Mot de passe"
+            android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Date de naissance -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/register_hint_birth"
-            android:layout_marginTop="@dimen/field_margin">
+            android:hint="Date de naissance (yyyy-MM-dd)"
+            android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etBirthDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="date"/>
+                android:inputType="date"
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Ville -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/register_hint_city"
-            android:layout_marginTop="@dimen/field_margin">
+            android:hint="Ville"
+            android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="textPostalAddress"/>
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Parent 1 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/register_hint_parent1"
-            android:layout_marginTop="@dimen/field_margin">
+            android:hint="Nom complet parent 1"
+            android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etParent1Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="textPersonName"/>
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Parent 2 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/register_hint_parent2"
-            android:layout_marginTop="@dimen/field_margin">
+            android:hint="Nom complet parent 2"
+            android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etParent2Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="textPersonName"/>
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Téléphone parents -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/register_hint_parent_phone"
-            android:layout_marginTop="@dimen/field_margin">
+            android:hint="Téléphone des parents"
+            android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etParentPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="phone"/>
+                android:inputType="phone"
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- CIN parents -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/register_hint_parent_cin"
-            android:layout_marginTop="@dimen/field_margin">
+            android:hint="CIN des parents"
+            android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etParentCin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="textCapCharacters"/>
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- CIN utilisateur (optionnel) -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/register_hint_user_cin"
-            android:layout_marginTop="@dimen/field_margin">
+            android:hint="CIN utilisateur (optionnel)"
+            android:layout_marginTop="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etUserCin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:inputType="textCapCharacters"/>
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Bouton inscription -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegister"
             style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register_btn"
-            android:layout_marginTop="@dimen/btn_margin"/>
+            android:text="S’inscrire"
+            android:layout_marginTop="20dp"/>
 
+        <!-- Lien vers connexion -->
         <TextView
             android:id="@+id/btnToLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/register_to_login"
-            android:textColor="?attr/colorPrimary"
-            android:layout_marginTop="12dp"/>
+            android:text="Déjà un compte ? Se connecter"
+            android:textColor="@color/vxm_blue_500"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center_horizontal"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center_horizontal"/>
     </LinearLayout>
 </ScrollView>

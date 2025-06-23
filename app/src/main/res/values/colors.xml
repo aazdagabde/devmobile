@@ -3,5 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue_50">#E3F2FD</color>   <!-- Bleu très clair -->
-
+    <!-- Couleurs issues du logo -->
+    <color name="vxm_blue_700">#006C83</color>   <!-- texte principaux -->
+    <color name="vxm_blue_500">#0092AB</color>   <!-- primary -->
+    <color name="vxm_blue_200">#2EC4D4</color>   <!-- secondary / accents -->
+    <color name="vxm_blue_50">#E0F7FA</color>    <!-- fonds clairs -->
+    <color name="vxm_white">#FFFFFF</color>
 </resources>

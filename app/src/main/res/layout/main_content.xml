@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <!-- Logo -->
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@drawable/app_logo"
+        android:contentDescription="@string/app_name" />
+
+    <!-- Bonjour [Nom] -->
+    <TextView
+        android:id="@+id/txtHi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bonjour"
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="32dp" />
+
+    <!-- Informations utilisateur -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUserInfo"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Informations utilisateur"
+        app:icon="@drawable/ic_person"
+        app:iconPadding="8dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Vaccination -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVaccines"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vaccination"
+        app:icon="@drawable/ic_vaccines"
+        app:iconPadding="8dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Paramètres -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSettings"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Paramètres"
+        app:icon="@drawable/ic_settings"
+        app:iconPadding="8dp"
+        android:layout_marginBottom="12dp" />
+
+    <!-- ▼ Ancien bouton Assistant Santé : caché pour garder la référence Java -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnChat"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <!-- Nouveau bouton Déconnecter -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogout"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Déconnecter"
+        app:icon="@drawable/ic_logout"
+        app:iconPadding="8dp"
+        android:layout_marginBottom="24dp" />
+</LinearLayout>

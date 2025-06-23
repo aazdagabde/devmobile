@@ -8,10 +8,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,62 +17,66 @@ import ma.itirc.vaxmind.R;
 import ma.itirc.vaxmind.data.database.AppDatabase;
 import ma.itirc.vaxmind.data.entity.User;
 import ma.itirc.vaxmind.ui.main.MainActivity;
+import ma.itirc.vaxmind.util.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText emailEt, passEt;
+    private EditText etEmail, etPwd;
     private ProgressBar progress;
     private final ExecutorService io = Executors.newSingleThreadExecutor();
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    @Override protected void onCreate(Bundle s) {
+        super.onCreate(s);
 
-        emailEt  = findViewById(R.id.etEmail);
-        passEt   = findViewById(R.id.etPassword);
+        /* ----------  Déjà connecté ? sauter le formulaire ---------- */
+        long sessionId = SessionManager.current(this);
+        if (sessionId != -1) {
+            launchMain(sessionId);
+            return;
+        }
+
+        setContentView(R.layout.activity_login);
+        etEmail  = findViewById(R.id.etEmail);
+        etPwd    = findViewById(R.id.etPassword);
         progress = findViewById(R.id.progressBar);
 
         findViewById(R.id.btnLogin).setOnClickListener(v -> attemptLogin());
-        findViewById(R.id.btnToRegister).setOnClickListener(
-                v -> startActivity(new Intent(this, RegisterActivity.class)));
+        findViewById(R.id.btnToRegister).setOnClickListener(v ->
+                startActivity(new Intent(this, RegisterActivity.class)));
     }
 
     private void attemptLogin() {
-        String email = emailEt.getText().toString().trim();
-        String pass  = passEt.getText().toString().trim();
+        String email = etEmail.getText().toString().trim();
+        String pwd   = etPwd.getText().toString().trim();
 
-        if (email.isEmpty() || pass.isEmpty()) {
-            Toast.makeText(this, "Email et mot de passe requis", Toast.LENGTH_SHORT).show();
-            return;
-        }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEt.setError("Email invalide"); emailEt.requestFocus(); return;
+            etEmail.setError("Email invalide"); return;
         }
+        if (pwd.isEmpty()) { etPwd.setError("Mot de passe vide"); return; }
 
         progress.setVisibility(View.VISIBLE);
 
         io.execute(() -> {
-            AppDatabase db = AppDatabase.get(this);
-            User u = db.userDao().findByEmail(email);
-
-            runOnUiThread(() -> {
-                progress.setVisibility(View.GONE);
-
-                if (u == null) {
-                    emailEt.setError("Compte introuvable"); emailEt.requestFocus();
-                    return;
-                }
-                if (!BCrypt.checkpw(pass, u.passwordHash)) {
-                    passEt.setError("Mot de passe incorrect"); passEt.requestFocus();
-                    return;
-                }
-
-                Intent i = new Intent(this, MainActivity.class);
-                i.putExtra("userId", u.id);
-                startActivity(i);
-                finish();
-            });
+            User u = AppDatabase.get(this).userDao().findByEmail(email);
+            runOnUiThread(() -> progress.setVisibility(View.GONE));
+            if (u == null || !org.mindrot.jbcrypt.BCrypt.checkpw(pwd, u.passwordHash)) {
+                runOnUiThread(() ->
+                        Toast.makeText(this, "Identifiants incorrects", Toast.LENGTH_SHORT).show());
+            } else {
+                SessionManager.save(this, u.id);          // <— enregistre la session
+                runOnUiThread(() -> launchMain(u.id));
+            }
         });
+    }
+
+    private void launchMain(long id) {
+        startActivity(new Intent(this, MainActivity.class)
+                .putExtra("userId", id));
+        finish();
+    }
+
+    @Override protected void onDestroy() {
+        super.onDestroy();
+        io.shutdown();
     }
 }

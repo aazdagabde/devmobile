@@ -2,22 +2,35 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:fillViewport="true"
+    android:padding="24dp"
+    android:background="@color/vxm_blue_50">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Nom & prénom dans un seul champ pour la démo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paramètres"
+            android:textAppearance="?attr/textAppearanceHeadlineSmall"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="12dp"/>
+
+        <!-- Nom complet -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nom complet">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Ville -->
@@ -26,10 +39,12 @@
             android:layout_height="wrap_content"
             android:hint="Ville"
             android:layout_marginTop="12dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etCity"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Ancien mot de passe -->
@@ -38,11 +53,13 @@
             android:layout_height="wrap_content"
             android:hint="Ancien mot de passe"
             android:layout_marginTop="12dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etOldPwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Nouveau mot de passe -->
@@ -51,14 +68,15 @@
             android:layout_height="wrap_content"
             android:hint="Nouveau mot de passe"
             android:layout_marginTop="12dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etNewPwd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:minHeight="48dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Bouton Enregistrer -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSave"
             style="@style/Widget.Material3.Button.TonalButton"

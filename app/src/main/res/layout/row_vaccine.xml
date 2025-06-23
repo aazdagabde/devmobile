@@ -1,38 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Élément de ligne stylé : carte Material, coins 12 dp, légère ombre. -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingVertical="6dp"
-    android:divider="?android:attr/dividerHorizontal"
-    android:showDividers="middle">
+    android:layout_marginVertical="4dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="12dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/vxm_blue_200">
 
-    <!-- Nom vaccin -->
-    <TextView
-        android:id="@+id/colName"
-        android:layout_width="0dp"
+    <!-- Contenu horizontal -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:textStyle="bold"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingVertical="10dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp">
 
-    <!-- Date -->
-    <TextView
-        android:id="@+id/colDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        <!-- Nom du vaccin -->
+        <TextView
+            android:id="@+id/colName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textStyle="bold"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            android:textColor="@color/vxm_blue_700"/>
 
-    <!-- État -->
-    <TextView
-        android:id="@+id/colState"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textAlignment="center"/>
+        <!-- Date -->
+        <TextView
+            android:id="@+id/colDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="@color/vxm_blue_700"/>
 
-    <!-- Case à cocher -->
-    <CheckBox
-        android:id="@+id/ckDone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        <!-- État (Fait / Non fait) -->
+        <TextView
+            android:id="@+id/colState"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="@color/vxm_blue_700"/>
+
+        <!-- Case à cocher Material -->
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/ckDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:buttonTint="@color/vxm_blue_500"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
