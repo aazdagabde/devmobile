@@ -6,22 +6,36 @@
     android:layout_height="match_parent"
     android:background="@color/vxm_blue_50">
 
-    <!-- FAB Chatbot -->
-
+    <!-- Contenu scrollable -->
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:padding="24dp"
-        app:layout_anchor="@+id/scrollMain"
-        app:layout_anchorGravity="center"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!-- Contenu principal -->
-        <include layout="@layout/main_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/main_content"/>
+
+            <TextView
+                android:id="@+id/tvFooter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cette application est développée par les élèves ingénieurs Abdellah Aazdag et Bousslama Salma dans le cadre du module Développement mobile, encadré par Mme Chouiekh Chaimae, filière ITIRC – ENSA Oujda – année universitaire 2024/2025."
+                android:textSize="10sp"
+                android:textAlignment="center"
+                android:textColor="@color/vxm_blue_700"
+                android:paddingTop="24dp"
+                android:paddingBottom="8dp"/>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+    <!-- FAB Chatbot -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabChat"
         android:layout_width="wrap_content"
@@ -30,7 +44,7 @@
         android:contentDescription="Chatbot"
         app:tint="@color/vxm_white"
         app:backgroundTint="@color/vxm_blue_500"
-        app:layout_anchorGravity="bottom|end"
         app:layout_anchor="@id/scrollMain"
+        app:layout_anchorGravity="bottom|end"
         android:layout_margin="24dp"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

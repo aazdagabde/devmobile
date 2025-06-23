@@ -196,7 +196,16 @@
             android:textColor="@color/vxm_blue_500"
             android:layout_marginTop="12dp"
             android:layout_gravity="center_horizontal"/>
-
+        <TextView
+            android:id="@+id/tvFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cette application est développée par les élèves ingénieurs Abdellah Aazdag et Bousslama Salma dans le cadre du module Développement mobile, encadré par Mme Chouiekh Chaimae, filière ITIRC – ENSA Oujda – année universitaire 2024/2025."
+            android:textSize="10sp"
+            android:textAlignment="center"
+            android:textColor="@color/vxm_blue_700"
+            android:paddingTop="24dp"
+            android:paddingBottom="8dp"/>
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
